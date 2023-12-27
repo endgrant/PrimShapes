@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://gcogla0nrpwq"]
+[gd_scene load_steps=6 format=3 uid="uid://gcogla0nrpwq"]
+
+[ext_resource type="PackedScene" uid="uid://vf6xpkg683xc" path="res://Entity/RigidEntity/RigidParticles/octo_particle.tscn" id="1_1uxyp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82888"]
 size = Vector2(13400, 200)
@@ -12,7 +14,7 @@ size = Vector2(13400, 200)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxuyg"]
 size = Vector2(200, 13400)
 
-[node name="Node2D" type="Node2D"]
+[node name="Map" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -6500.0
@@ -48,3 +50,10 @@ position = Vector2(-6500, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder"]
 position = Vector2(-100, 0)
 shape = SubResource("RectangleShape2D_xxuyg")
+
+[node name="Octo-Particle" parent="." instance=ExtResource("1_1uxyp")]
+position = Vector2(169, 120)
+
+[node name="Octo-Particle3" parent="." instance=ExtResource("1_1uxyp")]
+position = Vector2(83, 60)
+constant_force = Vector2(20, 10)

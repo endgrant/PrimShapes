@@ -1,13 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://6a6osvohx6mf"]
+[gd_scene load_steps=3 format=3 uid="uid://6a6osvohx6mf"]
 
 [ext_resource type="PackedScene" uid="uid://drl7203auncoq" path="res://Entity/RigidEntity/rigid_entity.tscn" id="1_0yr2l"]
+[ext_resource type="Script" path="res://Entity/RigidEntity/RigidEntity.cs" id="2_11xvn"]
 
 [node name="Tri-Particle" instance=ExtResource("1_0yr2l")]
+script = ExtResource("2_11xvn")
+health = 300
+contactDamage = 5
+experience = 30
 
 [node name="Polygon2D" parent="." index="0"]
-position = Vector2(0, -0.470587)
-scale = Vector2(2, 2.05882)
+position = Vector2(0, -2)
+scale = Vector2(4, 4)
 polygon = PackedVector2Array(10, 8, -10, 8, 0, -9)
 
 [node name="CollisionPolygon2D" parent="." index="1"]
-polygon = PackedVector2Array(20, 16, -20, 16, 0, -19)
+position = Vector2(0, -2)
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(20, 16, -20, 16, 0, -18)

@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://vf6xpkg683xc"]
+[gd_scene load_steps=3 format=3 uid="uid://vf6xpkg683xc"]
 
 [ext_resource type="PackedScene" uid="uid://drl7203auncoq" path="res://Entity/RigidEntity/rigid_entity.tscn" id="1_x6hrp"]
+[ext_resource type="Script" path="res://Entity/RigidEntity/RigidEntity.cs" id="2_0p16n"]
 
 [node name="Octo-Particle" instance=ExtResource("1_x6hrp")]
+script = ExtResource("2_0p16n")
+health = 1000
+contactDamage = 20
+experience = 100
 
 [node name="Polygon2D" parent="." index="0"]
 scale = Vector2(4, 4)
