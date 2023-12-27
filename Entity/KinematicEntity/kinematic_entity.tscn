@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d32tpnqo83ieo"]
+
+[ext_resource type="Texture2D" uid="uid://brk41mqiw6tnp" path="res://Entity/KinematicEntity/body.png" id="1_iv7ck"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mbnro"]
+radius = 128.0
+
+[node name="KinematicEntity" type="CharacterBody2D"]
+motion_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_iv7ck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mbnro")
