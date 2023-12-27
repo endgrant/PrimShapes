@@ -1,8 +1,8 @@
 using Godot;
 using System;
 
-public partial class Player : KinematicEntity
-{
+
+public partial class Player : KinematicEntity {
         private float topSpeed = 512.0F;
         private float acceleration = 0.2F;
 
