@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfs70h5i4nq0b"]
+
+[ext_resource type="PackedScene" uid="uid://d32tpnqo83ieo" path="res://Entity/KinematicEntity/kinematic_entity.tscn" id="1_ldi4f"]
+[ext_resource type="Script" path="res://Entity/KinematicEntity/Player/Player.cs" id="2_bowyh"]
+
+[node name="Player" instance=ExtResource("1_ldi4f")]
+script = ExtResource("2_bowyh")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 0, 0, 1)
