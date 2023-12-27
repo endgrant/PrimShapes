@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://drl7203auncoq"]
+
+[node name="RigidEntity" type="RigidBody2D"]
+gravity_scale = 0.0
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

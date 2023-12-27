@@ -23,3 +23,8 @@ window/size/initial_position=Vector2i(-640, -360)
 [dotnet]
 
 project/assembly_name="PrimShapes"
+
+[physics]
+
+2d/default_gravity_vector=Vector2(0, 0)
+2d/size/initial_position=Vector2i(0, 0)
