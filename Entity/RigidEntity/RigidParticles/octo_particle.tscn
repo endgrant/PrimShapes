@@ -4,15 +4,17 @@
 [ext_resource type="Script" path="res://Entity/RigidEntity/RigidEntity.cs" id="2_0p16n"]
 
 [node name="Octo-Particle" instance=ExtResource("1_x6hrp")]
+mass = 50.0
 script = ExtResource("2_0p16n")
 health = 1000
 contactDamage = 20
 experience = 100
 
 [node name="Polygon2D" parent="." index="0"]
-scale = Vector2(4, 4)
+scale = Vector2(5, 5)
 color = Color(0.901961, 0.117647, 0.117647, 1)
 polygon = PackedVector2Array(4, 9, 9, 4, 9, -4, 4, -9, -4, -9, -9, -4, -9, 4, -4, 9)
 
 [node name="CollisionPolygon2D" parent="." index="1"]
+scale = Vector2(1.25, 1.25)
 polygon = PackedVector2Array(36, 16, 16, 36, -16, 36, -36, 16, -36, -16, -16, -36, 16, -36, 36, -16)

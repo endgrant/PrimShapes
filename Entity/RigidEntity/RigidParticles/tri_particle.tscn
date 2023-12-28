@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Entity/RigidEntity/RigidEntity.cs" id="2_11xvn"]
 
 [node name="Tri-Particle" instance=ExtResource("1_0yr2l")]
+mass = 12.5
 script = ExtResource("2_11xvn")
 health = 300
 contactDamage = 5
@@ -11,11 +12,10 @@ experience = 30
 
 [node name="Polygon2D" parent="." index="0"]
 position = Vector2(0, -2)
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 color = Color(0.117647, 0.117647, 0.901961, 1)
 polygon = PackedVector2Array(10, 8, -10, 8, 0, -9)
 
 [node name="CollisionPolygon2D" parent="." index="1"]
 position = Vector2(0, -2)
-scale = Vector2(2, 2)
 polygon = PackedVector2Array(20, 16, -20, 16, 0, -18)

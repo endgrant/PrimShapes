@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://gcogla0nrpwq"]
+[gd_scene load_steps=9 format=3 uid="uid://gcogla0nrpwq"]
 
 [ext_resource type="PackedScene" uid="uid://vf6xpkg683xc" path="res://Entity/RigidEntity/RigidParticles/octo_particle.tscn" id="1_1uxyp"]
 [ext_resource type="PackedScene" uid="uid://ddb8f8516eavb" path="res://Entity/RigidEntity/RigidParticles/square_particle.tscn" id="2_iju17"]
 [ext_resource type="PackedScene" uid="uid://6a6osvohx6mf" path="res://Entity/RigidEntity/RigidParticles/tri_particle.tscn" id="3_jmage"]
+[ext_resource type="PackedScene" uid="uid://cfs70h5i4nq0b" path="res://Entity/KinematicEntity/Player/player.tscn" id="4_vstnk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82888"]
 size = Vector2(13400, 200)
@@ -54,14 +55,13 @@ position = Vector2(-100, 0)
 shape = SubResource("RectangleShape2D_xxuyg")
 
 [node name="Octo-Particle" parent="." instance=ExtResource("1_1uxyp")]
-position = Vector2(169, 120)
+position = Vector2(515, 307)
 
-[node name="Octo-Particle3" parent="." instance=ExtResource("1_1uxyp")]
-position = Vector2(83, 60)
-constant_force = Vector2(20, 10)
+[node name="Tri-Particle" parent="." instance=ExtResource("3_jmage")]
+position = Vector2(561, 406)
 
 [node name="Square-Particle" parent="." instance=ExtResource("2_iju17")]
-position = Vector2(284, 149)
+position = Vector2(656, 379)
 
-[node name="Tri-Particle" parent="Square-Particle" instance=ExtResource("3_jmage")]
-position = Vector2(-55, 46)
+[node name="Player" parent="." instance=ExtResource("4_vstnk")]
+position = Vector2(255, 341)

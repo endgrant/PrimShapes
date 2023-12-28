@@ -4,14 +4,15 @@ using System;
 // Control for the player object
 
 
-public partial class Player : KinematicEntity {
+public partial class Player : KinematicEntity, Entity {
         [Signal] public delegate void XpChangedEventHandler(float experience);
         [Signal] public delegate void LevelChangedEventHandler(int level, int points);
 
         private int unspentPoints = 0;
 
-        private float topSpeed = 512.0F;
-        private float acceleration = 0.2F;
+        private float topSpeed = 2000.0F;
+
+        private float acceleration = 0.5F;
 
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,11 +22,19 @@ public partial class Player : KinematicEntity {
                         Y = Input.GetAxis("MoveUp", "MoveDown")
                 };
 
-                Velocity = Velocity.Lerp(inputVector.Normalized() * topSpeed, acceleration);
+                Velocity = Velocity.Lerp(inputVector.Normalized() * topSpeed, (float)(acceleration * delta));
 
                 MoveAndSlide();
-	}
 
+                for(int i = 0; i < GetSlideCollisionCount(); i++) {
+                        KinematicCollision2D collision = GetSlideCollision(i);
+                        if(collision.GetCollider() is Entity) {
+                                ((Entity)collision.GetCollider()).Impact(mass * Velocity, 0);
+                                Impact(((Entity)collision.GetCollider()).GetMass() * Velocity * -1, 0);
+                        }
+
+                }
+	}
 
         // Award experience points to the entity
         public void AwardXP(float experience) {
@@ -47,4 +56,6 @@ public partial class Player : KinematicEntity {
                 unspentPoints += newLevel - prevLevel;
                 EmitSignal(SignalName.LevelChanged, newLevel, unspentPoints);
         }
+
+
 }
