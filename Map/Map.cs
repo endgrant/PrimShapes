@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 
@@ -7,6 +8,7 @@ public partial class Map : Node {
 	private Player player;
         private Node shapeCollection;
         private Vector2 bounds;
+        private List<PackedScene> shapeScenes = new();
 
 
         // Called when the node enters the tree
@@ -21,6 +23,11 @@ public partial class Map : Node {
                         Y = rect.Size.Y * playArea.Scale.Y
                 };
 
+                List<string> shapeFiles = new List<string>(DirAccess.GetFilesAt(Globals.shapesPath));
+                foreach (string file in shapeFiles) {
+                        shapeScenes.Add(GD.Load<PackedScene>(Globals.shapesPath + "/" + file));
+                }
+
                 int i = 0;
                 while (i < 100) {
                         i++;
@@ -34,14 +41,14 @@ public partial class Map : Node {
         }
 
 
-        private PackedScene shapeSceneTest = GD.Load<PackedScene>("Entity/RigidEntity/Shapes/triangle.tscn");
         // Spawns a new particle shape
         public void SpawnShape(bool hidden) {
-                RigidEntity shape = shapeSceneTest.Instantiate<RigidEntity>();
                 Viewport viewport = GetPlayer().GetViewport();
                 Rect2 extents = viewport.GetVisibleRect();
                 Vector2 randCoords = extents.Position;
                 Random random = new();
+
+                RigidEntity shape = shapeScenes[random.Next() % shapeScenes.Count].Instantiate<RigidEntity>();
 
                 if (hidden) {
                          // Sample random positions until finding one outside the viewport extents
