@@ -6,7 +6,7 @@ using System;
 
 public partial class Player : KinematicEntity {
         [Signal] public delegate void XpChangedEventHandler(float experience);
-        [Signal] public delegate void LevelUpEventHandler(int level, int points);
+        [Signal] public delegate void LevelChangedEventHandler(int level, int points);
 
         private int unspentPoints = 0;
 
@@ -21,7 +21,7 @@ public partial class Player : KinematicEntity {
                         Y = Input.GetAxis("MoveUp", "MoveDown")
                 };
 
-                Velocity = Velocity.Lerp(inputVector * topSpeed, acceleration);
+                Velocity = Velocity.Lerp(inputVector.Normalized() * topSpeed, acceleration);
 
                 MoveAndSlide();
 	}
@@ -45,6 +45,6 @@ public partial class Player : KinematicEntity {
         // Entity reached new level
         private void LevelUp(int newLevel, int prevLevel) {
                 unspentPoints += newLevel - prevLevel;
-                EmitSignal(SignalName.LevelUp, newLevel, unspentPoints);
+                EmitSignal(SignalName.LevelChanged, newLevel, unspentPoints);
         }
 }

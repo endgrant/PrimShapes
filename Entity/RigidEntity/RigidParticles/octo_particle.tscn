@@ -11,6 +11,7 @@ experience = 100
 
 [node name="Polygon2D" parent="." index="0"]
 scale = Vector2(4, 4)
+color = Color(0.901961, 0.117647, 0.117647, 1)
 polygon = PackedVector2Array(4, 9, 9, 4, 9, -4, 4, -9, -4, -9, -9, -4, -9, 4, -4, 9)
 
 [node name="CollisionPolygon2D" parent="." index="1"]
