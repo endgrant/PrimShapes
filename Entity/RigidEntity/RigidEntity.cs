@@ -29,14 +29,25 @@ public partial class RigidEntity : RigidBody2D, Entity {
         }
 
 
+        public void AssignMap(Map map) {
+                this.map = map;
+        } 
+
+
         // Applies an impulse to the body
         public void Impact(Vector2 force, float damage) {
                 ApplyCentralImpulse(force);
+
+                health -= damage;
+                if (health <= 0) {
+                        Destroy();
+                }
         }
 
 
         // Destroy this entity
         public void Destroy() {
-                
+                map.GetPlayer().AwardXP(xpValue);
+                QueueFree();
         }
 }

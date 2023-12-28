@@ -65,6 +65,7 @@ public partial class Map : Node {
                 }
 
                 shape.Position = randCoords - bounds / 2;
+                shape.AssignMap(this);
                 shapeCollection.AddChild(shape);
         }
 }
