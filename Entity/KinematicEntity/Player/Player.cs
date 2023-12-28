@@ -10,31 +10,46 @@ public partial class Player : KinematicEntity, Entity {
 
         private int unspentPoints = 0;
 
-        private float topSpeed = 2000.0F;
+        private float topSpeed = 500.0F;
+        private float acceleration = 2.0F;
 
-        private float acceleration = 0.5F;
+        private Camera2D camera;
 
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _PhysicsProcess(double delta) {
+        // Called when the node enters the tree for the first time
+        public override void _Ready() {
+                base._Ready();
+                camera = GetNode<Camera2D>("Camera2D");
+        }
+
+
+        // Called every frame. 'delta' is the elapsed time since the previous frame.
+        public override void _PhysicsProcess(double delta) {
+                base._Ready();
                 Vector2 inputVector = new Vector2 {
                         X = Input.GetAxis("MoveLeft", "MoveRight"),
                         Y = Input.GetAxis("MoveUp", "MoveDown")
                 };
 
-                Velocity = Velocity.Lerp(inputVector.Normalized() * topSpeed, (float)(acceleration * delta));
+                Velocity = Velocity.MoveToward(inputVector.Normalized() * topSpeed, (float)(acceleration * delta * 1000));
 
                 MoveAndSlide();
 
                 for(int i = 0; i < GetSlideCollisionCount(); i++) {
-                        KinematicCollision2D collision = GetSlideCollision(i);
-                        if(collision.GetCollider() is Entity) {
-                                ((Entity)collision.GetCollider()).Impact(mass * Velocity, 0);
-                                Impact(((Entity)collision.GetCollider()).GetMass() * Velocity * -1, 0);
+                        GodotObject collider = GetSlideCollision(i).GetCollider();
+                        if(collider is Entity) {
+                                Entity entity = (Entity)collider;
+                                entity.Impact(mass * Velocity, GetCollisionDamage());
+                                Impact(entity.GetMass() * Velocity * -1, entity.GetCollisionDamage());
                         }
-
                 }
 	}
+
+
+        public Camera2D GetCamera() {
+                return camera;
+        }
+        
 
         // Award experience points to the entity
         public void AwardXP(float experience) {
@@ -56,6 +71,4 @@ public partial class Player : KinematicEntity, Entity {
                 unspentPoints += newLevel - prevLevel;
                 EmitSignal(SignalName.LevelChanged, newLevel, unspentPoints);
         }
-
-
 }

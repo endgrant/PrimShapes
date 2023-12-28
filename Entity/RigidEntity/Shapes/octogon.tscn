@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://Entity/RigidEntity/RigidEntity.cs" id="2_0p16n"]
 
 [node name="Octo-Particle" instance=ExtResource("1_x6hrp")]
-mass = 50.0
+mass = 100.0
 script = ExtResource("2_0p16n")
-health = 1000
-contactDamage = 20
-experience = 100
+maxHealth = 30.0
+collisionDamage = 4.0
+xpValue = 14
 
 [node name="Polygon2D" parent="." index="0"]
 scale = Vector2(5, 5)

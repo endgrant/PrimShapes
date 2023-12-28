@@ -3,6 +3,8 @@ using System;
 
 
 public interface Entity {
-    public float GetMass();
-    void Impact(Vector2 force, int damage);
+        public float GetMass();
+        float GetCollisionDamage();
+        void Impact(Vector2 force, float damage);
+        void Destroy();
 }

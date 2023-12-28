@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cfs70h5i4nq0b"]
 
-[ext_resource type="PackedScene" path="res://Entity/KinematicEntity/kinematic_entity.tscn" id="1_ldi4f"]
+[ext_resource type="PackedScene" uid="uid://d32tpnqo83ieo" path="res://Entity/KinematicEntity/kinematic_entity.tscn" id="1_ldi4f"]
 [ext_resource type="Script" path="res://Entity/KinematicEntity/Player/Player.cs" id="2_bowyh"]
 
 [node name="Player" instance=ExtResource("1_ldi4f")]
@@ -12,3 +12,5 @@ scale = Vector2(0.25, 0.25)
 
 [node name="CollisionShape2D" parent="." index="1"]
 scale = Vector2(0.25, 0.25)
+
+[node name="Camera2D" type="Camera2D" parent="." index="2"]

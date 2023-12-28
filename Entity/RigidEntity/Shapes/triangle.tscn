@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://Entity/RigidEntity/RigidEntity.cs" id="2_11xvn"]
 
 [node name="Tri-Particle" instance=ExtResource("1_0yr2l")]
-mass = 12.5
+mass = 25.0
 script = ExtResource("2_11xvn")
-health = 300
-contactDamage = 5
-experience = 30
+maxHealth = 6.0
+collisionDamage = 1.0
+xpValue = 2
 
 [node name="Polygon2D" parent="." index="0"]
 position = Vector2(0, -2)

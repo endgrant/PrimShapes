@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://Entity/RigidEntity/RigidEntity.cs" id="2_pyxax"]
 
 [node name="Square-Particle" instance=ExtResource("1_g5et2")]
-mass = 25.0
+mass = 50.0
 script = ExtResource("2_pyxax")
-health = 600
-contactDamage = 10
-experience = 60
+maxHealth = 14.0
+collisionDamage = 2.0
+xpValue = 6
 
 [node name="Polygon2D" parent="." index="0"]
 scale = Vector2(2.5, 2.5)
