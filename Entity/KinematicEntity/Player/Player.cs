@@ -36,7 +36,7 @@ public partial class Player : KinematicEntity, Entity {
                         GodotObject collider = GetSlideCollision(i).GetCollider();
                         if(collider is Entity) {
                                 Entity entity = (Entity)collider;
-                                entity.Impact(mass * Velocity, GetCollisionDamage());
+                                entity.Impact(mass * Velocity * GetCollisionDamage() * Globals.bounceFactor, GetCollisionDamage());
                                 Impact(entity.GetMass() * Velocity * -1, entity.GetCollisionDamage());
                         }
                 }
