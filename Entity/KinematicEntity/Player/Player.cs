@@ -13,13 +13,10 @@ public partial class Player : KinematicEntity, Entity {
         private float topSpeed = 500.0F;
         private float acceleration = 2.0F;
 
-        private Camera2D camera;
-
 
         // Called when the node enters the tree for the first time
         public override void _Ready() {
                 base._Ready();
-                camera = GetNode<Camera2D>("Camera2D");
         }
 
 
@@ -45,11 +42,6 @@ public partial class Player : KinematicEntity, Entity {
                 }
 	}
 
-
-        public Camera2D GetCamera() {
-                return camera;
-        }
-        
 
         // Award experience points to the entity
         public void AwardXP(float experience) {

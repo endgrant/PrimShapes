@@ -18,41 +18,49 @@ size = Vector2(200, 13400)
 [node name="Map" type="Node"]
 script = ExtResource("1_ufnls")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ShapeSpawn" type="Timer" parent="."]
+autostart = true
+
+[node name="PlayArea" type="Node2D" parent="."]
+scale = Vector2(0.4, 0.4)
+
+[node name="ColorRect" type="ColorRect" parent="PlayArea"]
 offset_left = -6500.0
 offset_top = -6500.0
 offset_right = 6500.0
 offset_bottom = 6500.0
 color = Color(0.894118, 0.894118, 0.894118, 1)
 
-[node name="Shapes" type="Node" parent="."]
-
-[node name="BottomBorder" type="StaticBody2D" parent="."]
+[node name="BottomBorder" type="StaticBody2D" parent="PlayArea"]
 position = Vector2(0, 6500)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/BottomBorder"]
 position = Vector2(0, 100)
 shape = SubResource("RectangleShape2D_82888")
 
-[node name="RightBorder" type="StaticBody2D" parent="."]
+[node name="RightBorder" type="StaticBody2D" parent="PlayArea"]
 position = Vector2(6500, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/RightBorder"]
 position = Vector2(100, 0)
 shape = SubResource("RectangleShape2D_oxglb")
 
-[node name="TopBorder" type="StaticBody2D" parent="."]
+[node name="TopBorder" type="StaticBody2D" parent="PlayArea"]
 position = Vector2(0, -6500)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/TopBorder"]
 position = Vector2(0, -100)
 shape = SubResource("RectangleShape2D_v6dfw")
 
-[node name="LeftBorder" type="StaticBody2D" parent="."]
+[node name="LeftBorder" type="StaticBody2D" parent="PlayArea"]
 position = Vector2(-6500, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/LeftBorder"]
 position = Vector2(-100, 0)
 shape = SubResource("RectangleShape2D_xxuyg")
 
+[node name="Shapes" type="Node" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("4_vstnk")]
+
+[connection signal="timeout" from="ShapeSpawn" to="." method="SpawnShape" binds= [true]]
