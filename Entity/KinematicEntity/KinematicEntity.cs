@@ -44,12 +44,14 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
                 return mass;
         }
 
+
         // Collide with entity
         public void HeavyImpact(Vector2 force, float damage) {
                 Velocity = force / mass;
                 MoveAndSlide();
         }
 
+        
         public void LightImpact(Vector2 force, float damage) {
                 Velocity += force / mass;
                 MoveAndSlide();

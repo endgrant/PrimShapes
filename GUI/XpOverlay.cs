@@ -19,12 +19,13 @@ public partial class XpOverlay : Control {
 
 
         // Update the display
-        public void Update(float experience) {
+        public void Update(float experience, int points) {
                 int currentLevel = Globals.GetLevelFromXp(experience);
                 progressBar.MinValue = Globals.GetXpFromLevel(currentLevel);
                 progressBar.MaxValue = Globals.GetXpFromLevel(currentLevel + 1);
                 progressBar.Value = experience;
 
                 levelDisplay.Text = "lvl: " + currentLevel;
+                pointsDisplay.Text = "pts: " + points;
         }
 }

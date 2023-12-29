@@ -57,7 +57,7 @@ public partial class Map : Node {
 
 
         public void UpdateXpOverlay() {
-                xpOverlay.Update(GetPlayer().GetXp());
+                xpOverlay.Update(GetPlayer().GetXp(), GetPlayer().GetPoints());
         }
 
 
