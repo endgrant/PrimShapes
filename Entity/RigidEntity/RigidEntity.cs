@@ -35,23 +35,24 @@ public partial class RigidEntity : RigidBody2D, Entity {
         }
 
 
+        public Vector2 GetVelocity() {
+                return LinearVelocity;
+        }
+
+
         public void AssignMap(Map map) {
                 this.map = map;
         } 
 
 
         // Applies an impulse to the body
-        public void HeavyImpact(Vector2 force, float damage) {
+        public void Impact(Vector2 force, float damage) {
                 health -= damage;
                 if (health <= 0) {
                         Destroy();
                 }
 
                 ApplyCentralImpulse(force);
-        }
-
-        public void LightImpact(Vector2 force, float damage) {
-                HeavyImpact(force, damage);
         }
 
 

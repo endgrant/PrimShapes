@@ -28,8 +28,8 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
                         GodotObject collider = GetSlideCollision(i).GetCollider();
                         if(collider is Entity) {
                                 Entity entity = (Entity)collider;
-                                entity.HeavyImpact(mass * Velocity * (1 + GetCollisionDamage() * 0.1F) * Globals.bounceFactor, GetCollisionDamage());
-                                HeavyImpact(entity.GetMass() * Velocity * -(1 + entity.GetCollisionDamage() * 0.1F) * Globals.bounceFactor, entity.GetCollisionDamage());
+                                entity.Impact(mass * (Velocity - entity.GetVelocity()) * (1 + GetCollisionDamage() * 0.1F) * Globals.bounceFactor, GetCollisionDamage());
+                                Impact(entity.GetMass() * (-Velocity + entity.GetVelocity()) * (1 + entity.GetCollisionDamage() * 0.1F) * Globals.bounceFactor, entity.GetCollisionDamage());
                         }
                 }
 	}
@@ -44,13 +44,18 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
                 return mass;
         }
 
+
+        public Vector2 GetVelocity() {
+                return Velocity;
+        }
+
         // Collide with entity
-        public void HeavyImpact(Vector2 force, float damage) {
+        public void Impact(Vector2 force, float damage) {
                 Velocity = force / mass;
                 MoveAndSlide();
         }
 
-        public void LightImpact(Vector2 force, float damage) {
+        public void Recoil(Vector2 force, float damage) {
                 Velocity += force / mass;
                 MoveAndSlide();
         }
