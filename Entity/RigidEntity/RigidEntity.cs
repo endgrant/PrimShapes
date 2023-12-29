@@ -6,6 +6,7 @@ public partial class RigidEntity : RigidBody2D, Entity {
         [Export(PropertyHint.Range, "0, 100000")] float maxHealth;
         [Export(PropertyHint.Range, "0, 100000")] float collisionDamage;
         [Export(PropertyHint.Range, "0, 100000")] int xpValue;
+        [Export(PropertyHint.Range, "0, 100")] int spawnChance = 50;
 
         protected float health;
 
@@ -29,19 +30,28 @@ public partial class RigidEntity : RigidBody2D, Entity {
         }
 
 
+        public int GetSpawnChance() {
+                return spawnChance;
+        }
+
+
         public void AssignMap(Map map) {
                 this.map = map;
         } 
 
 
         // Applies an impulse to the body
-        public void Impact(Vector2 force, float damage) {
-                ApplyCentralImpulse(force);
-
+        public void HeavyImpact(Vector2 force, float damage) {
                 health -= damage;
                 if (health <= 0) {
                         Destroy();
                 }
+
+                ApplyCentralImpulse(force);
+        }
+
+        public void LightImpact(Vector2 force, float damage) {
+                HeavyImpact(force, damage);
         }
 
 

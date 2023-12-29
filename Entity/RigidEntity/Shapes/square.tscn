@@ -3,12 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://drl7203auncoq" path="res://Entity/RigidEntity/rigid_entity.tscn" id="1_g5et2"]
 [ext_resource type="Script" path="res://Entity/RigidEntity/RigidEntity.cs" id="2_pyxax"]
 
-[node name="Square-Particle" instance=ExtResource("1_g5et2")]
-mass = 50.0
+[node name="Square" instance=ExtResource("1_g5et2")]
+mass = 80.0
 script = ExtResource("2_pyxax")
 maxHealth = 14.0
 collisionDamage = 2.0
 xpValue = 6
+spawnChance = 35
 
 [node name="Polygon2D" parent="." index="0"]
 scale = Vector2(2.5, 2.5)

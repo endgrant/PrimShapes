@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 
@@ -9,8 +10,10 @@ public partial class Map : Node {
         private Node shapeCollection;
         private XpOverlay xpOverlay;
 
-        private Vector2 bounds;
+        private Godot.Vector2 bounds;
         private List<PackedScene> shapeScenes = new();
+        private List<int> spawnChances = new();
+        private int totalSpawnChance = 0;
 
 
         // Called when the node enters the tree
@@ -22,7 +25,7 @@ public partial class Map : Node {
 
                 Node2D playArea = GetNode<Node2D>("PlayArea");
                 ColorRect rect = playArea.GetNode<ColorRect>("ColorRect");
-                bounds = new Vector2 {
+                bounds = new Godot.Vector2 {
                         X = rect.Size.X * playArea.Scale.X,
                         Y = rect.Size.Y * playArea.Scale.Y
                 };
@@ -32,11 +35,19 @@ public partial class Map : Node {
                         shapeScenes.Add(GD.Load<PackedScene>(Globals.shapesPath + "/" + file));
                 }
 
-                int i = 0;
-                while (i < 120) {
-                        i++;
-                        SpawnShape();
+
+                foreach(PackedScene scene in shapeScenes) {
+                        RigidEntity shape = (RigidEntity)scene.Instantiate();
+                        shapeCollection.AddChild(shape);
+                        int spawnChance = shape.GetSpawnChance();
+                        spawnChances.Add(spawnChance);
+                        totalSpawnChance += spawnChance;
+                        shape.QueueFree();
                 }
+
+
+                for(int i = 0; i < 300; i++)
+                        SpawnShape();
         }
 
 
@@ -53,10 +64,20 @@ public partial class Map : Node {
         // Spawns a new particle shape
         public void SpawnShape() {
                 Random random = new();
+                int type = (int)(random.NextInt64() % totalSpawnChance);
 
-                RigidEntity shape = shapeScenes[random.Next() % shapeScenes.Count].Instantiate<RigidEntity>();
+                int selector = 0;
+                int i = 0;
+                while(true) {
+                        selector += spawnChances[i];
+                        if(type < selector)
+                                break;
+                        i++;
+                }
 
-                Vector2 randCoords = new Vector2 {
+                RigidEntity shape = shapeScenes[i].Instantiate<RigidEntity>();
+
+                Godot.Vector2 randCoords = new Godot.Vector2 {
                         X = (float)random.NextDouble() * bounds.X,
                         Y = (float)random.NextDouble() * bounds.Y,
                 };

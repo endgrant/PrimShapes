@@ -22,7 +22,7 @@ public partial class Player : KinematicEntity, Entity {
 
         // Called every frame. 'delta' is the elapsed time since the previous frame.
         public override void _PhysicsProcess(double delta) {
-                base._Ready();
+                health = maxHealth;
                 Vector2 inputVector = new Vector2 {
                         X = Input.GetAxis("MoveLeft", "MoveRight"),
                         Y = Input.GetAxis("MoveUp", "MoveDown")
@@ -31,15 +31,7 @@ public partial class Player : KinematicEntity, Entity {
                 Velocity = Velocity.MoveToward(inputVector.Normalized() * topSpeed, (float)(acceleration * delta * 1000));
 
                 MoveAndSlide();
-
-                for(int i = 0; i < GetSlideCollisionCount(); i++) {
-                        GodotObject collider = GetSlideCollision(i).GetCollider();
-                        if(collider is Entity) {
-                                Entity entity = (Entity)collider;
-                                entity.Impact(mass * Velocity * GetCollisionDamage() * Globals.bounceFactor, GetCollisionDamage());
-                                Impact(entity.GetMass() * Velocity * -1, entity.GetCollisionDamage());
-                        }
-                }
+                base._PhysicsProcess(delta);
 	}
 
 

@@ -4,7 +4,7 @@ using System;
 
 public partial class KinematicEntity : CharacterBody2D, Entity {
         [ExportCategory("Attributes")]
-        [Export(PropertyHint.Range, "0, 100000")] float maxHealth;
+        [Export(PropertyHint.Range, "0, 100000")] protected float maxHealth;
         [Export(PropertyHint.Range, "0, 100000")] float collisionDamage;
         [Export(PropertyHint.Range, "0, 100000")] float projectileDamage;
         [Export(PropertyHint.Range, "0, 100000")] float moveSpeed;
@@ -12,7 +12,7 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
 
         protected float health;
         protected float experience;
-        protected float mass = 10.0F;
+        protected float mass = 50.0F;
 
 
         // Called when the node enters the tree
@@ -24,6 +24,14 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
 
         // Called every frame. 'delta' is the elapsed time since the previous frame.
         public override void _PhysicsProcess(double delta) {
+                for(int i = 0; i < GetSlideCollisionCount(); i++) {
+                        GodotObject collider = GetSlideCollision(i).GetCollider();
+                        if(collider is Entity) {
+                                Entity entity = (Entity)collider;
+                                entity.HeavyImpact(mass * Velocity * (1 + GetCollisionDamage() * 0.1F) * Globals.bounceFactor, GetCollisionDamage());
+                                HeavyImpact(entity.GetMass() * Velocity * -(1 + entity.GetCollisionDamage() * 0.1F) * Globals.bounceFactor, entity.GetCollisionDamage());
+                        }
+                }
 	}
 
 
@@ -37,8 +45,13 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
         }
 
         // Collide with entity
-        public void Impact(Vector2 force, float damage) {
-                Velocity = force / (float)Math.Pow(mass, 2);
+        public void HeavyImpact(Vector2 force, float damage) {
+                Velocity = force / mass;
+                MoveAndSlide();
+        }
+
+        public void LightImpact(Vector2 force, float damage) {
+                Velocity += force / mass;
                 MoveAndSlide();
         }
 

@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://drl7203auncoq" path="res://Entity/RigidEntity/rigid_entity.tscn" id="1_0yr2l"]
 [ext_resource type="Script" path="res://Entity/RigidEntity/RigidEntity.cs" id="2_11xvn"]
 
-[node name="Tri-Particle" instance=ExtResource("1_0yr2l")]
-mass = 25.0
+[node name="Triangle" instance=ExtResource("1_0yr2l")]
+mass = 50.0
 script = ExtResource("2_11xvn")
 maxHealth = 6.0
 collisionDamage = 1.0

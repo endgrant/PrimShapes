@@ -3,16 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://drl7203auncoq" path="res://Entity/RigidEntity/rigid_entity.tscn" id="1_x6hrp"]
 [ext_resource type="Script" path="res://Entity/RigidEntity/RigidEntity.cs" id="2_0p16n"]
 
-[node name="Octo-Particle" instance=ExtResource("1_x6hrp")]
-mass = 100.0
+[node name="Octagon" instance=ExtResource("1_x6hrp")]
+mass = 150.0
 script = ExtResource("2_0p16n")
 maxHealth = 30.0
 collisionDamage = 4.0
 xpValue = 14
+spawnChance = 15
 
 [node name="Polygon2D" parent="." index="0"]
 scale = Vector2(5, 5)
-color = Color(0.901961, 0.117647, 0.117647, 1)
 polygon = PackedVector2Array(4, 9, 9, 4, 9, -4, 4, -9, -4, -9, -9, -4, -9, 4, -4, 9)
 
 [node name="CollisionPolygon2D" parent="." index="1"]

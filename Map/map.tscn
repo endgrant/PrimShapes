@@ -5,16 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://cfs70h5i4nq0b" path="res://Entity/KinematicEntity/Player/player.tscn" id="4_vstnk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82888"]
-size = Vector2(13400, 200)
+size = Vector2(26400, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxglb"]
-size = Vector2(200, 13400)
+size = Vector2(200, 26400)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6dfw"]
-size = Vector2(13400, 200)
+size = Vector2(26400, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxuyg"]
-size = Vector2(200, 13400)
+size = Vector2(200, 26400)
 
 [node name="Map" type="Node"]
 script = ExtResource("1_ufnls")
@@ -27,35 +27,35 @@ autostart = true
 scale = Vector2(0.4, 0.4)
 
 [node name="ColorRect" type="ColorRect" parent="PlayArea"]
-offset_left = -6500.0
-offset_top = -6500.0
-offset_right = 6500.0
-offset_bottom = 6500.0
-color = Color(0.831373, 0.831373, 0.831373, 1)
+offset_left = -13000.0
+offset_top = -13000.0
+offset_right = 13000.0
+offset_bottom = 13000.0
+color = Color(0.784314, 0.784314, 0.784314, 1)
 
 [node name="BottomBorder" type="StaticBody2D" parent="PlayArea"]
-position = Vector2(0, 6500)
+position = Vector2(0, 13000)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/BottomBorder"]
 position = Vector2(0, 100)
 shape = SubResource("RectangleShape2D_82888")
 
 [node name="RightBorder" type="StaticBody2D" parent="PlayArea"]
-position = Vector2(6500, 0)
+position = Vector2(13000, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/RightBorder"]
 position = Vector2(100, 0)
 shape = SubResource("RectangleShape2D_oxglb")
 
 [node name="TopBorder" type="StaticBody2D" parent="PlayArea"]
-position = Vector2(0, -6500)
+position = Vector2(0, -13000)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/TopBorder"]
 position = Vector2(0, -100)
 shape = SubResource("RectangleShape2D_v6dfw")
 
 [node name="LeftBorder" type="StaticBody2D" parent="PlayArea"]
-position = Vector2(-6500, 0)
+position = Vector2(-13000, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/LeftBorder"]
 position = Vector2(-100, 0)
