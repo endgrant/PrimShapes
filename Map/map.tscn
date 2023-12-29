@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://gcogla0nrpwq"]
+[gd_scene load_steps=8 format=3 uid="uid://gcogla0nrpwq"]
 
 [ext_resource type="Script" path="res://Map/Map.cs" id="1_ufnls"]
+[ext_resource type="PackedScene" uid="uid://bm0ime8g8ugwl" path="res://GUI/xp_overlay.tscn" id="3_r4vrx"]
 [ext_resource type="PackedScene" uid="uid://cfs70h5i4nq0b" path="res://Entity/KinematicEntity/Player/player.tscn" id="4_vstnk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82888"]
@@ -19,6 +20,7 @@ size = Vector2(200, 13400)
 script = ExtResource("1_ufnls")
 
 [node name="ShapeSpawn" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="PlayArea" type="Node2D" parent="."]
@@ -29,7 +31,7 @@ offset_left = -6500.0
 offset_top = -6500.0
 offset_right = 6500.0
 offset_bottom = 6500.0
-color = Color(0.894118, 0.894118, 0.894118, 1)
+color = Color(0.831373, 0.831373, 0.831373, 1)
 
 [node name="BottomBorder" type="StaticBody2D" parent="PlayArea"]
 position = Vector2(0, 6500)
@@ -63,4 +65,8 @@ shape = SubResource("RectangleShape2D_xxuyg")
 
 [node name="Player" parent="." instance=ExtResource("4_vstnk")]
 
-[connection signal="timeout" from="ShapeSpawn" to="." method="SpawnShape" binds= [true]]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="XpOverlay" parent="CanvasLayer" instance=ExtResource("3_r4vrx")]
+
+[connection signal="timeout" from="ShapeSpawn" to="." method="SpawnShape"]

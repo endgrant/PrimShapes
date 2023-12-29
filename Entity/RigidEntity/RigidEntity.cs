@@ -48,6 +48,7 @@ public partial class RigidEntity : RigidBody2D, Entity {
         // Destroy this entity
         public void Destroy() {
                 map.GetPlayer().AwardXP(xpValue);
+                map.UpdateXpOverlay();
                 QueueFree();
         }
 }

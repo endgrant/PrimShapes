@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 public partial class Map : Node {
 	private Player player;
         private Node shapeCollection;
+        private XpOverlay xpOverlay;
+
         private Vector2 bounds;
         private List<PackedScene> shapeScenes = new();
 
@@ -16,6 +18,8 @@ public partial class Map : Node {
                 base._Ready();
                 player = GetNode<Player>("Player");
                 shapeCollection = GetNode<Node>("Shapes");
+                xpOverlay = GetNode("CanvasLayer").GetNode<XpOverlay>("XpOverlay");
+
                 Node2D playArea = GetNode<Node2D>("PlayArea");
                 ColorRect rect = playArea.GetNode<ColorRect>("ColorRect");
                 bounds = new Vector2 {
@@ -29,9 +33,9 @@ public partial class Map : Node {
                 }
 
                 int i = 0;
-                while (i < 100) {
+                while (i < 120) {
                         i++;
-                        SpawnShape(false);
+                        SpawnShape();
                 }
         }
 
@@ -41,35 +45,21 @@ public partial class Map : Node {
         }
 
 
+        public void UpdateXpOverlay() {
+                xpOverlay.Update(GetPlayer().GetXp());
+        }
+
+
         // Spawns a new particle shape
-        public void SpawnShape(bool hidden) {
-                Viewport viewport = GetPlayer().GetViewport();
-                Rect2 extents = viewport.GetVisibleRect();
-                Vector2 randCoords = extents.Position;
+        public void SpawnShape() {
                 Random random = new();
 
                 RigidEntity shape = shapeScenes[random.Next() % shapeScenes.Count].Instantiate<RigidEntity>();
 
-                if (hidden) {
-                         // Sample random positions until finding one outside the viewport extents
-                        int i = 0;
-                        while (extents.HasPoint(randCoords)) {
-                                i++;
-                                if (i > 10) {
-                                        return;
-                                }
-
-                                randCoords = new Vector2 {
-                                        X = (float)random.NextDouble() * bounds.X,
-                                        Y = (float)random.NextDouble() * bounds.Y,
-                                };
-                        }
-                }  else {
-                        randCoords = new Vector2 {
-                                X = (float)random.NextDouble() * bounds.X,
-                                Y = (float)random.NextDouble() * bounds.Y,
-                        };
-                }
+                Vector2 randCoords = new Vector2 {
+                        X = (float)random.NextDouble() * bounds.X,
+                        Y = (float)random.NextDouble() * bounds.Y,
+                };
 
                 shape.Position = randCoords - bounds / 2;
                 shape.AssignMap(this);

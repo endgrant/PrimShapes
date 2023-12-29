@@ -43,11 +43,15 @@ public partial class Player : KinematicEntity, Entity {
 	}
 
 
+        public float GetXp() {
+                return experience;
+        }
+
         // Award experience points to the entity
         public void AwardXP(float experience) {
-                int currentLevel = Globals.GetLevelFromXP(this.experience);
+                int currentLevel = Globals.GetLevelFromXp(this.experience);
                 this.experience += experience;
-                int newLevel = Globals.GetLevelFromXP(this.experience);
+                int newLevel = Globals.GetLevelFromXp(this.experience);
 
                 EmitSignal(SignalName.XpChanged, experience);
 
