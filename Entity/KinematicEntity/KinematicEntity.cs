@@ -45,6 +45,7 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
         }
 
 
+
         public Vector2 GetVelocity() {
                 return Velocity;
         }
