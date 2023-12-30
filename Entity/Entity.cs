@@ -9,4 +9,5 @@ public interface Entity {
         public void Impact(Godot.Vector2 force, float damage);
         public void Destroy();
         public Godot.Vector2 GetVelocity();
+        public Godot.Vector2 GetGlobalPosition();
 }

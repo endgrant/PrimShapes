@@ -11,6 +11,7 @@ public partial class RigidEntity : RigidBody2D, Entity {
         protected float health;
 
         protected Map map;
+        protected float topSpeed = 250.0F;
 
 
         // Called when the node enters the tree
@@ -52,7 +53,8 @@ public partial class RigidEntity : RigidBody2D, Entity {
                         Destroy();
                 }
 
-                ApplyCentralImpulse(force);
+                if(LinearVelocity.Length() < topSpeed)
+                        ApplyCentralImpulse(force);
         }
 
 
@@ -61,5 +63,9 @@ public partial class RigidEntity : RigidBody2D, Entity {
                 map.GetPlayer().AwardXP(xpValue);
                 map.UpdateXpOverlay();
                 QueueFree();
+        }
+
+        public Vector2 GetGlobalPosition() {
+                return GlobalPosition;
         }
 }

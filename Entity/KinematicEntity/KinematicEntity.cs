@@ -28,8 +28,12 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
                         GodotObject collider = GetSlideCollision(i).GetCollider();
                         if(collider is Entity) {
                                 Entity entity = (Entity)collider;
-                                entity.Impact(mass * (Velocity - entity.GetVelocity()) * (1 + GetCollisionDamage() * 0.1F) * Globals.bounceFactor, GetCollisionDamage());
-                                Impact(entity.GetMass() * (-Velocity + entity.GetVelocity()) * (1 + entity.GetCollisionDamage() * 0.1F) * Globals.bounceFactor, entity.GetCollisionDamage());
+                                Vector2 direction = (GetGlobalPosition() - entity.GetGlobalPosition()).Normalized();
+                                float force = (GetVelocity() * GetMass() + entity.GetVelocity() * entity.GetMass()).Length() + 50;
+                                entity.Impact(-direction * force * (1 + GetCollisionDamage() * 0.1F) * Globals.bounceFactor, 
+                                        GetCollisionDamage() * GetVelocity().Length() / (Globals.bounceFactor * 1000));
+                                Impact(direction * force * (1 + entity.GetCollisionDamage() * 0.1F) * Globals.bounceFactor, 
+                                        entity.GetCollisionDamage() * entity.GetVelocity().Length() / (Globals.bounceFactor * 1000));
                         }
                 }
 	}
@@ -65,5 +69,9 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
         // Destroy this entity
         public void Destroy() {
                 
+        }
+
+        public Vector2 GetGlobalPosition() {
+                return GlobalPosition;
         }
 }
