@@ -8,7 +8,7 @@ public partial class PauseOverlay : Control
                 if (@event.IsActionPressed("Pause")) {
                         GetTree().Paused = false;
                         Visible = false;
-                        GD.Print("not unpausing?");
+                        Globals.justUnpaused = true;
                 }
 
                 base._Input(@event);

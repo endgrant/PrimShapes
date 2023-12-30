@@ -58,6 +58,10 @@ public partial class Map : Node {
                 base._Input(@event);
 
                 if (@event.IsActionPressed("Pause")) {
+                        if (Globals.justUnpaused) {
+                                Globals.justUnpaused = false;
+                                return;
+                        }
                         GetTree().Paused = true;
                         pauseOverlay.Visible = true;
                 }
