@@ -9,6 +9,7 @@ public partial class Map : Node {
 	private Player player;
         private Node shapeCollection;
         private XpOverlay xpOverlay;
+        private PauseOverlay pauseOverlay;
 
         private Godot.Vector2 bounds;
         private List<PackedScene> shapeScenes = new();
@@ -22,6 +23,7 @@ public partial class Map : Node {
                 player = GetNode<Player>("Player");
                 shapeCollection = GetNode<Node>("Shapes");
                 xpOverlay = GetNode("CanvasLayer").GetNode<XpOverlay>("XpOverlay");
+                pauseOverlay = GetNode("CanvasLayer").GetNode<PauseOverlay>("PauseOverlay");
 
                 Node2D playArea = GetNode<Node2D>("PlayArea");
                 ColorRect rect = playArea.GetNode<ColorRect>("ColorRect");
@@ -48,6 +50,17 @@ public partial class Map : Node {
 
                 for(int i = 0; i < 300; i++)
                         SpawnShape();
+        }
+
+
+        // User input received
+        public override void _Input(InputEvent @event) {
+                base._Input(@event);
+
+                if (@event.IsActionPressed("Pause")) {
+                        GetTree().Paused = true;
+                        pauseOverlay.Visible = true;
+                }
         }
 
 
