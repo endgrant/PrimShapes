@@ -65,7 +65,7 @@ public partial class RigidEntity : RigidBody2D, Entity {
                 QueueFree();
         }
 
-        public Vector2 GetGlobalPosition() {
-                return GlobalPosition;
+        public Vector2 GetPosition() {
+                return Position;
         }
 }
