@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://pbhbxsdtdvrn"]
+[gd_scene load_steps=5 format=3 uid="uid://pbhbxsdtdvrn"]
 
 [ext_resource type="Script" path="res://GUI/PauseOverlay.cs" id="1_l3s1p"]
 [ext_resource type="Material" uid="uid://b2wjekh2oe5qe" path="res://GUI/blur.tres" id="2_e3wci"]
+[ext_resource type="LabelSettings" uid="uid://cr00q2xslw8ax" path="res://GUI/floating_text.tres" id="3_vluil"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mw5m4"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.486275)
 
 [node name="PauseOverlay" type="Control"]
 process_mode = 2
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,3 +27,145 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PointsLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+text = "Points: 0"
+label_settings = SubResource("LabelSettings_mw5m4")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Health" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Health"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "Health"
+label_settings = ExtResource("3_vluil")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/Health"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Increases your maximum health"
+text = "0
+"
+
+[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+
+[node name="BodyDmg" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/BodyDmg"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "Body Dmg"
+label_settings = ExtResource("3_vluil")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/BodyDmg"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Increases damage against things you collide with"
+text = "0
+"
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+
+[node name="ProjDmg" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/ProjDmg"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "Proj Dmg"
+label_settings = ExtResource("3_vluil")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/ProjDmg"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Increases damage of projectiles you fire"
+text = "0
+"
+
+[node name="Spacer3" type="Control" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+
+[node name="Speed" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Speed"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "Speed"
+label_settings = ExtResource("3_vluil")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/Speed"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Increases your movement speed"
+text = "0
+"
+
+[node name="Spacer4" type="Control" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+
+[node name="Firerate" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Firerate"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "Firerate"
+label_settings = ExtResource("3_vluil")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/Firerate"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Increases your rate of fire"
+text = "0
+"

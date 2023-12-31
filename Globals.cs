@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 public static class Globals {
-        public const float bounceFactor = 0.25F;
+        public const float bounceFactor = 0.3F;
         public const string shapesPath = "res://Entity/RigidEntity/Shapes";
 
         public static bool justUnpaused = false;

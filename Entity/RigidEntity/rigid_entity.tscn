@@ -2,6 +2,8 @@
 
 [node name="RigidEntity" type="RigidBody2D"]
 gravity_scale = 0.0
+linear_damp_mode = 1
+linear_damp = 0.5
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 

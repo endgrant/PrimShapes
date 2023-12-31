@@ -63,6 +63,7 @@ public partial class Map : Node {
                                 return;
                         }
                         GetTree().Paused = true;
+                        pauseOverlay.SetPoints(player.GetPoints());
                         pauseOverlay.Visible = true;
                 }
         }

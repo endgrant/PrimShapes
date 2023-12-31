@@ -29,7 +29,7 @@ public partial class Player : KinematicEntity, Entity {
                 };
 
                 Velocity = Velocity.MoveToward(inputVector.Normalized() * topSpeed, 
-                        (float)((acceleration * 0.75 * inputVector.Length() + acceleration * 0.25) * delta * 1000));
+                        (float)(acceleration * delta * 1000));
 
                 MoveAndSlide();
                 base._PhysicsProcess(delta);
