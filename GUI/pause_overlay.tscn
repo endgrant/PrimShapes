@@ -170,3 +170,9 @@ size_flags_vertical = 4
 tooltip_text = "Increases your rate of fire"
 text = "0
 "
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Health/Button" to="." method="HealthUpgrade"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BodyDmg/Button" to="." method="BodyDmgUpgrade"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ProjDmg/Button" to="." method="ProjDmgUpgrade"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Speed/Button" to="." method="SpeedUpgrade"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Firerate/Button" to="." method="FirerateUpgrade"]

@@ -25,6 +25,8 @@ public partial class Map : Node {
                 xpOverlay = GetNode("CanvasLayer").GetNode<XpOverlay>("XpOverlay");
                 pauseOverlay = GetNode("CanvasLayer").GetNode<PauseOverlay>("PauseOverlay");
 
+                pauseOverlay.AssignPlayer(player);
+
                 Node2D playArea = GetNode<Node2D>("PlayArea");
                 ColorRect rect = playArea.GetNode<ColorRect>("ColorRect");
                 bounds = new Godot.Vector2 {

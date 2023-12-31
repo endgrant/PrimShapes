@@ -4,11 +4,11 @@ using System;
 
 public partial class KinematicEntity : CharacterBody2D, Entity {
         [ExportCategory("Attributes")]
-        [Export(PropertyHint.Range, "0, 100000")] protected float maxHealth;
-        [Export(PropertyHint.Range, "0, 100000")] float collisionDamage;
-        [Export(PropertyHint.Range, "0, 100000")] float projectileDamage;
-        [Export(PropertyHint.Range, "0, 100000")] float moveSpeed;
-        [Export(PropertyHint.Range, "0, 100000")] float fireRate;
+        [Export(PropertyHint.Range, "0, 15")] protected int healthLvl;
+        [Export(PropertyHint.Range, "0, 15")] protected int bodyDmgLvl;
+        [Export(PropertyHint.Range, "0, 15")] protected int projDmgLvl;
+        [Export(PropertyHint.Range, "0, 15")] protected int speedLvl;
+        [Export(PropertyHint.Range, "0, 15")] protected int firerateLvl;
 
         protected float health;
         protected float experience;
@@ -18,7 +18,7 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
         // Called when the node enters the tree
         public override void _Ready() {
                 base._Ready();
-                health = maxHealth;
+                health = Globals.GetHealthFromLevel(healthLvl);
         }
 
 
@@ -40,7 +40,7 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
 
 
         public float GetCollisionDamage() {
-                return collisionDamage;
+                return Globals.GetBodyDmgFromLevel(bodyDmgLvl);
         }
 
 
@@ -73,5 +73,30 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
 
         public Vector2 GetPosition() {
                 return Position;
+        }
+
+
+        public void IncrementHealth() {
+                healthLvl++;
+        }
+
+
+        public void IncrementBodyDmg() {
+                bodyDmgLvl++;
+        }
+
+
+        public void IncrementProjDmg() {
+                projDmgLvl++;
+        }
+
+
+        public void IncrementSpeed() {
+                speedLvl++;
+        }
+
+
+        public void IncrementFirerate() {
+                firerateLvl++;
         }
 }

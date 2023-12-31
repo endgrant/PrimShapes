@@ -22,13 +22,12 @@ public partial class Player : KinematicEntity, Entity {
 
         // Called every frame. 'delta' is the elapsed time since the previous frame.
         public override void _PhysicsProcess(double delta) {
-                health = maxHealth;
                 Vector2 inputVector = new Vector2 {
                         X = Input.GetAxis("MoveLeft", "MoveRight"),
                         Y = Input.GetAxis("MoveUp", "MoveDown")
                 };
 
-                Velocity = Velocity.MoveToward(inputVector.Normalized() * topSpeed, 
+                Velocity = Velocity.MoveToward(inputVector.Normalized() * topSpeed * Globals.GetSpeedFromLevel(speedLvl), 
                         (float)(acceleration * delta * 1000));
 
                 MoveAndSlide();

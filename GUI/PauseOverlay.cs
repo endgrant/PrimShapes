@@ -5,6 +5,8 @@ public partial class PauseOverlay : Control
 {
         private Label pointsLabel;
 
+        private Player player;
+
         private int points = 0;
 
 
@@ -28,8 +30,38 @@ public partial class PauseOverlay : Control
         }
 
 
+        public void AssignPlayer(Player player) {
+                this.player = player;
+        }
+
+
         public void SetPoints(int points) {
                 this.points = points;
                 pointsLabel.Text = "Points: " + this.points;
+        }
+
+
+        public void HealthUpgrade() {
+
+        }
+
+
+        public void BodyDmgUpgrade() {
+
+        }
+
+
+        public void ProjDmgUpgrade() {
+
+        }
+
+
+        public void SpeedUpgrade() {
+
+        }
+
+
+        public void FirerateUpgrade() {
+
         }
 }
