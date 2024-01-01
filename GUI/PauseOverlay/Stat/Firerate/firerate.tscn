@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://csriunmx8etfp"]
+
+[ext_resource type="PackedScene" uid="uid://cywtwbxhvds5h" path="res://GUI/PauseOverlay/Stat/stat.tscn" id="1_5fo2b"]
+[ext_resource type="Script" path="res://GUI/PauseOverlay/Stat/Firerate/Firerate.cs" id="2_bxra6"]
+
+[node name="Firerate" instance=ExtResource("1_5fo2b")]
+tooltip_text = "Increases your rate of fire"
+script = ExtResource("2_bxra6")
+
+[node name="Label" parent="." index="0"]
+text = "Firerate"
+
+[node name="Button" parent="." index="1"]
+tooltip_text = "Increases your rate of fire"

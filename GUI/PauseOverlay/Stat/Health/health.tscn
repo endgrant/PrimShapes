@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://q6fg3d148nfg"]
+
+[ext_resource type="PackedScene" uid="uid://cywtwbxhvds5h" path="res://GUI/PauseOverlay/Stat/stat.tscn" id="1_j0v2l"]
+[ext_resource type="Script" path="res://GUI/PauseOverlay/Stat/Health/Health.cs" id="2_s2boa"]
+
+[node name="Health" instance=ExtResource("1_j0v2l")]
+tooltip_text = "Increases your maximum health"
+script = ExtResource("2_s2boa")
+
+[node name="Label" parent="." index="0"]
+text = "Health"
+
+[node name="Button" parent="." index="1"]
+tooltip_text = "Increases your maximum health"

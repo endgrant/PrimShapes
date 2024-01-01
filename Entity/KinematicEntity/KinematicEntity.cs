@@ -3,12 +3,11 @@ using System;
 
 
 public partial class KinematicEntity : CharacterBody2D, Entity {
-        [ExportCategory("Attributes")]
-        [Export(PropertyHint.Range, "0, 15")] protected int healthLvl;
-        [Export(PropertyHint.Range, "0, 15")] protected int bodyDmgLvl;
-        [Export(PropertyHint.Range, "0, 15")] protected int projDmgLvl;
-        [Export(PropertyHint.Range, "0, 15")] protected int speedLvl;
-        [Export(PropertyHint.Range, "0, 15")] protected int firerateLvl;
+        protected Health statHealth;
+        protected BodyDmg statBodyDmg;
+        protected ProjDmg statProjDmg;
+        protected Speed statSpeed;
+        protected Firerate statFirerate;
 
         protected float health;
         protected float experience;
@@ -18,7 +17,8 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
         // Called when the node enters the tree
         public override void _Ready() {
                 base._Ready();
-                health = Globals.GetHealthFromLevel(healthLvl);
+
+                health = statHealth.GetValue();
         }
 
 
@@ -40,7 +40,7 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
 
 
         public float GetCollisionDamage() {
-                return Globals.GetBodyDmgFromLevel(bodyDmgLvl);
+                return statBodyDmg.GetValue();
         }
 
 
@@ -73,30 +73,5 @@ public partial class KinematicEntity : CharacterBody2D, Entity {
 
         public Vector2 GetPosition() {
                 return Position;
-        }
-
-
-        public void IncrementHealth() {
-                healthLvl++;
-        }
-
-
-        public void IncrementBodyDmg() {
-                bodyDmgLvl++;
-        }
-
-
-        public void IncrementProjDmg() {
-                projDmgLvl++;
-        }
-
-
-        public void IncrementSpeed() {
-                speedLvl++;
-        }
-
-
-        public void IncrementFirerate() {
-                firerateLvl++;
         }
 }

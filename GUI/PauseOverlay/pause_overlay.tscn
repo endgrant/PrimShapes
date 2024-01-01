@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://pbhbxsdtdvrn"]
+
+[ext_resource type="Script" path="res://GUI/PauseOverlay/PauseOverlay.cs" id="1_l3s1p"]
+[ext_resource type="Material" uid="uid://b2wjekh2oe5qe" path="res://GUI/PauseOverlay/blur.tres" id="2_e3wci"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mw5m4"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.486275)
+
+[node name="PauseOverlay" type="Control"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l3s1p")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = ExtResource("2_e3wci")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PointsLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+text = "Points: 0"
+label_settings = SubResource("LabelSettings_mw5m4")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cywtwbxhvds5h"]
+
+[ext_resource type="Script" path="res://GUI/PauseOverlay/Stat/Stat.cs" id="1_iwaqe"]
+[ext_resource type="LabelSettings" uid="uid://cr00q2xslw8ax" path="res://GUI/floating_text.tres" id="2_hm5xs"]
+
+[node name="Stat" type="VBoxContainer"]
+alignment = 1
+script = ExtResource("1_iwaqe")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "Stat"
+label_settings = ExtResource("2_hm5xs")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+text = "0
+"
+
+[connection signal="pressed" from="Button" to="." method="ButtonPressed"]

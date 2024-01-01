@@ -4,9 +4,8 @@ using System;
 // Control for the player object
 
 
-public partial class Player : KinematicEntity, Entity {
-        [Signal] public delegate void XpChangedEventHandler(float experience);
-        [Signal] public delegate void LevelChangedEventHandler(int level, int points);
+public partial class Player : KinematicEntity, Entity {        
+        private PauseOverlay pauseOverlay;
 
         private int unspentPoints = 0;
 
@@ -15,7 +14,15 @@ public partial class Player : KinematicEntity, Entity {
 
 
         // Called when the node enters the tree for the first time
-        public override void _Ready() {
+        public override async void _Ready() {
+                await ToSignal(GetTree().Root.GetChild(0), SignalName.Ready);
+
+                statHealth = pauseOverlay.CreateStatButton<Health>(this, "health.tscn");
+                statBodyDmg = pauseOverlay.CreateStatButton<BodyDmg>(this, "body_dmg.tscn");
+                statProjDmg = pauseOverlay.CreateStatButton<ProjDmg>(this, "proj_dmg.tscn");
+                statSpeed = pauseOverlay.CreateStatButton<Speed>(this, "speed.tscn");
+                statFirerate = pauseOverlay.CreateStatButton<Firerate>(this, "firerate.tscn", true);
+                
                 base._Ready();
         }
 
@@ -27,12 +34,22 @@ public partial class Player : KinematicEntity, Entity {
                         Y = Input.GetAxis("MoveUp", "MoveDown")
                 };
 
-                Velocity = Velocity.MoveToward(inputVector.Normalized() * topSpeed * Globals.GetSpeedFromLevel(speedLvl), 
+                Velocity = Velocity.MoveToward(inputVector.Normalized() * topSpeed * statSpeed.GetValue(), 
                         (float)(acceleration * delta * 1000));
 
                 MoveAndSlide();
                 base._PhysicsProcess(delta);
 	}
+
+
+        public void AssignPause(PauseOverlay pause) {
+                pauseOverlay = pause;
+        }
+
+
+        public PauseOverlay GetPause() {
+                return pauseOverlay;
+        }
 
 
         public float GetXp() {
@@ -43,6 +60,11 @@ public partial class Player : KinematicEntity, Entity {
         public int GetPoints() {
                 return unspentPoints;
         }
+
+
+        public void SetPoints(int points) {
+                unspentPoints = points;
+        }
         
 
         // Award experience points to the entity
@@ -50,8 +72,6 @@ public partial class Player : KinematicEntity, Entity {
                 int currentLevel = Globals.GetLevelFromXp(this.experience);
                 this.experience += experience;
                 int newLevel = Globals.GetLevelFromXp(this.experience);
-
-                EmitSignal(SignalName.XpChanged, experience);
 
                 // New level reached
                 if (newLevel > currentLevel) {
@@ -63,6 +83,5 @@ public partial class Player : KinematicEntity, Entity {
         // Entity reached new level
         private void LevelUp(int newLevel, int prevLevel) {
                 unspentPoints += newLevel - prevLevel;
-                EmitSignal(SignalName.LevelChanged, newLevel, unspentPoints);
         }
 }

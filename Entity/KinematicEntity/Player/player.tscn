@@ -5,8 +5,6 @@
 
 [node name="Player" instance=ExtResource("1_ldi4f")]
 script = ExtResource("2_bowyh")
-maxHealth = 10.0
-collisionDamage = 2.0
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(1, 0, 0, 1)

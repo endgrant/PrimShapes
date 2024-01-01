@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://gcogla0nrpwq"]
 
 [ext_resource type="Script" path="res://Map/Map.cs" id="1_ufnls"]
-[ext_resource type="PackedScene" uid="uid://bm0ime8g8ugwl" path="res://GUI/xp_overlay.tscn" id="3_r4vrx"]
-[ext_resource type="PackedScene" uid="uid://pbhbxsdtdvrn" path="res://GUI/pause_overlay.tscn" id="4_elj7d"]
+[ext_resource type="PackedScene" uid="uid://bm0ime8g8ugwl" path="res://GUI/XpOverlay/xp_overlay.tscn" id="3_r4vrx"]
+[ext_resource type="PackedScene" uid="uid://pbhbxsdtdvrn" path="res://GUI/PauseOverlay/pause_overlay.tscn" id="4_elj7d"]
 [ext_resource type="PackedScene" uid="uid://cfs70h5i4nq0b" path="res://Entity/KinematicEntity/Player/player.tscn" id="4_vstnk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82888"]

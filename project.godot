@@ -32,6 +32,7 @@ folder_colors={
 "res://Entity/KinematicEntity/Player/": "yellow",
 "res://Entity/RigidEntity/": "green",
 "res://GUI/": "green",
+"res://GUI/PauseOverlay/Stat/": "orange",
 "res://Weapons/": "gray"
 }
 

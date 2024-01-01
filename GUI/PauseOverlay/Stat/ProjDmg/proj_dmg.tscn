@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://2nlu45fcb8ij"]
+
+[ext_resource type="PackedScene" uid="uid://cywtwbxhvds5h" path="res://GUI/PauseOverlay/Stat/stat.tscn" id="1_w1luk"]
+[ext_resource type="Script" path="res://GUI/PauseOverlay/Stat/ProjDmg/ProjDmg.cs" id="2_lihqe"]
+
+[node name="ProjDmg" instance=ExtResource("1_w1luk")]
+script = ExtResource("2_lihqe")
+
+[node name="Label" parent="." index="0"]
+text = "Proj
+Dmg"
+
+[node name="Button" parent="." index="1"]
+tooltip_text = "Increases damage of projectiles you fire"

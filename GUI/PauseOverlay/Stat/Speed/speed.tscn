@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://rugsa5uyrw8m"]
+
+[ext_resource type="PackedScene" uid="uid://cywtwbxhvds5h" path="res://GUI/PauseOverlay/Stat/stat.tscn" id="1_vlifx"]
+[ext_resource type="Script" path="res://GUI/PauseOverlay/Stat/Speed/Speed.cs" id="2_gejes"]
+
+[node name="Speed" instance=ExtResource("1_vlifx")]
+tooltip_text = "Increases your movement speed"
+script = ExtResource("2_gejes")
+
+[node name="Label" parent="." index="0"]
+text = "Speed"
+
+[node name="Button" parent="." index="1"]
+tooltip_text = "Increases your movement speed"
